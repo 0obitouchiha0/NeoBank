@@ -255,7 +255,15 @@ a {
   gap: 32px;
 }
 .wrapper .main .news-slider__line .news-card__img {
+  width: 256px;
   height: 120px;
+  overflow: hidden;
+  position: relative;
+}
+.wrapper .main .news-slider__line .news-card__img img {
+  position: absolute;
+  width: 100%;
+  height: auto;
 }
 .wrapper .main .news-slider__line .news-card__title {
   overflow: hidden;
