@@ -8,6 +8,7 @@
     let cardsCount = 0;
 
     const insertArticleWithImgCheck = (article) => {
+        if(!article.urlToImage) return
         return new Promise((res) => {
             fetch(article.urlToImage, {mode: "no-cors"})
                 .then(() => {
@@ -23,7 +24,7 @@
                                 </div>
                                 <h1 class="news-card__title">${article.title}</h1>
                                 <p class="news-card__description">${article.description}</p>
-                            </ф>
+                            </a>
                         `;
                     }
                     res()
