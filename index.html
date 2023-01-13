@@ -9,12 +9,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&family=Ubuntu:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/styles.css">
+    <script src="./scripts/exchange.js" defer></script>
+    <script src="./scripts/slider.js" defer></script>
     <title>NeoBank</title>
 </head>
 <body>
     <div class="wrapper">
         <header class="header">
-            <input type="checkbox" id="burger" checked/>
+            <input type="checkbox" id="burger"/>
             <label for="burger">☰</label>
             <nav class="nav">
                 <a href="#" class="nav__home-link">NeoBank</a>
@@ -79,36 +81,11 @@
                 <div class="exchange-main">
                     <h1 class="exchange-main__title">Exhange rate in internet bank</h1>
                     <h4 class="exchange-main__subtitle">Currency</h4>
-                    <ul class="rates-list">
-                        <li class="rates-list__item">
-                            <span class="rate-name">USD:</span>
-                            <span class="rate-value">60.68</span>
-                        </li>
-                        <li class="rates-list__item">
-                            <span class="rate-name">CNY:</span>
-                            <span class="rate-value">9.08</span>
-                        </li>
-                        <li class="rates-list__item">
-                            <span class="rate-name">CHF:</span>
-                            <span class="rate-value">64.78</span>
-                        </li>
-                        <li class="rates-list__item">
-                            <span class="rate-name">USD:</span>
-                            <span class="rate-value">60.68</span>
-                        </li>
-                        <li class="rates-list__item">
-                            <span class="rate-name">JPY:</span>
-                            <span class="rate-value">0.46</span>
-                        </li>
-                        <li class="rates-list__item">
-                            <span class="rate-name">TRY:</span>
-                            <span class="rate-value">3.39</span>
-                        </li>
-                    </ul>
+                    <ul class="rates-list"></ul>
                     <a href="#" class="exchange-main__all-rates-link">All courses</a>
                 </div>
                 <div class="exchange-aside">
-                    <h4 class="exchange-aside__last-update">Update every 15 minutes, MSC 09.08.2022</h4>
+                    <h4 class="exchange-aside__last-update"></h4>
                     <div class="exchange-aside__bank-img">
                         <img src="./assets/pagesImages/homePage/bank.png" alt="bank">
                     </div>
@@ -118,6 +95,25 @@
                 <h2 class="map__title">You can use our services anywhere in the world</h2>
                 <h4 class="map__subtitle">Withdraw and transfer money online through our application</h4>
                 <img src="./assets/pagesImages/homePage/map.png" alt="map" class="map__img"/>
+            </section>
+            <section class="news">
+                <h1 class="news__title">Current news from the world of finance</h1>
+                <h3 class="news__subtitle">We update the news feed every 15 minutes. You can learn more by clicking on the news you are interested in.</h3>
+                <div class="news-slider">
+                    <div class="news-slider__line"></div>
+                </div>
+                <div class="news-btns">
+                    <button class="news-btns__item news-btns__item--left">
+                        <svg width="25" height="26" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M25 17H9.84211V24.3914C9.84211 24.5845 9.59562 24.6655 9.48109 24.5101L1 13L9.48109 1.48994C9.59562 1.33452 9.84211 1.41552 9.84211 1.60858V9H25" stroke="#222222"/>
+                        </svg> 
+                    </button>
+                    <button class="news-btns__item news-btns__item--right">
+                        <svg width="25" height="26" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 9H15.1579V1.60858C15.1579 1.41552 15.4044 1.33452 15.5189 1.48994L24 13L15.5189 24.5101C15.4044 24.6655 15.1579 24.5845 15.1579 24.3914V17H0" stroke="white"/>
+                        </svg>                            
+                    </button>
+                </div>
             </section>
             <section class="subscription">
                 <h4 class="subscription__title">Support</h4>

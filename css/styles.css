@@ -6,7 +6,6 @@ body {
   margin: 0;
   padding: 0;
   background-color: #f5f5f5;
-  width: 100vw;
 }
 
 a {
@@ -211,6 +210,105 @@ a {
 }
 .wrapper .main .map__img {
   width: 81.5%;
+}
+.wrapper .main .news {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 48px;
+}
+.wrapper .main .news__title {
+  font-family: "Ubuntu";
+  font-weight: 500;
+  line-height: 50px;
+  font-size: 30px;
+  text-align: center;
+}
+.wrapper .main .news__subtitle {
+  font-family: "Ubuntu";
+  font-weight: 500;
+  line-height: 50px;
+  font-size: 16px;
+  margin-top: 8px;
+  text-align: center;
+}
+.wrapper .main .news-slider {
+  width: 100%;
+  overflow: hidden;
+}
+.wrapper .main .news-slider__line {
+  transition: all ease 0.5s;
+  position: relative;
+  left: 0;
+  display: flex;
+  gap: 80px;
+  margin-top: 48px;
+}
+.wrapper .main .news-slider__line .news-card {
+  cursor: pointer;
+  min-width: 320px;
+  background-color: #fff;
+  padding: 32px;
+  border-radius: 28px;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.wrapper .main .news-slider__line .news-card__img {
+  width: 256px;
+  height: 120px;
+  overflow: hidden;
+  position: relative;
+}
+.wrapper .main .news-slider__line .news-card__img img {
+  position: absolute;
+  width: 100%;
+  height: auto;
+}
+.wrapper .main .news-slider__line .news-card__title {
+  overflow: hidden;
+  display: block;
+  height: 104px;
+  font-family: "Ubuntu";
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 125%;
+  text-align: center;
+}
+.wrapper .main .news-slider__line .news-card__description {
+  overflow: hidden;
+  display: block;
+  height: 96px;
+  font-family: "Ubuntu";
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 144%;
+  text-align: center;
+}
+.wrapper .main .news-btns {
+  margin-top: 48px;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  gap: 20px;
+}
+.wrapper .main .news-btns__item {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  padding: 20px;
+  background-color: #003CFF;
+}
+.wrapper .main .news-btns__item svg path {
+  stroke: #fff;
+}
+.wrapper .main .news-btns__item:disabled {
+  border: 1px solid #003CFF;
+  background-color: #fff;
+}
+.wrapper .main .news-btns__item:disabled svg path {
+  stroke: #222;
 }
 .wrapper .main .subscription {
   margin-top: 175px;
