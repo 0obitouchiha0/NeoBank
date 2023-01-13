@@ -4,21 +4,19 @@
     const btnLeft = document.querySelector('.news-btns__item--left');
     const btnRight = document.querySelector('.news-btns__item--right');
 
-    const {articles} = await fetch('https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=b483f40812184a8e8e2eb453e42ba60a').then(res => res.json())
-    let cardsCount = 0;
+    const {articles = []} = await fetch('https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=b483f40812184a8e8e2eb453e42ba60a').then(res => res.json())
 
     const insertArticleWithImgCheck = (article) => {
-        if(!article.urlToImage) return
+        if(!article.urlToImage || !article.title || !article.description || !article.url) return
         return new Promise((res) => {
             fetch(article.urlToImage, {mode: "no-cors"})
                 .then(() => {
-                    console.log(article.urlToImage)
                     const isDescriptionValid = !(/<\/?[a-z][\s\S]*>/i.test(article.description))
                     const isTitleValid = !(/<\/?[a-z][\s\S]*>/i.test(article.title))
-                    if(isDescriptionValid && isTitleValid) {
-                        cardsCount++
+                    const isUrlValid = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/.test(article.url)
+                    if(isDescriptionValid && isTitleValid && isUrlValid) {
                         sliderLine.innerHTML += `
-                            <a class="news-card" href="${article.url}")>
+                            <a class="news-card" href="${article.url}") target="_blank">
                                 <div class="news-card__img">
                                     <img src="${article.urlToImage}" alt="news-img"/>
                                 </div>
@@ -42,17 +40,16 @@
     
     Promise.all(promises)
     .then(() => {
-        console.log('return', cardsCount)
-        if(!sliderLine.children.length) console.log('return')
+        if(!sliderLine.children.length) return
 
+        const cardsCount = sliderLine.childElementCount;
         const cardWidth = sliderLine.children[0].offsetWidth;
         const gapWidth = sliderLine.children[1].offsetLeft - sliderLine.children[0].offsetLeft - sliderLine.children[0].offsetWidth;
         const itemFullWidth = cardWidth + gapWidth;
         const fullWidth = cardsCount * cardWidth + gapWidth * (cardsCount - 1)
         const visibleWidth = sliderLine.offsetWidth;
+        const visibleItemsCount = Math.trunc(visibleWidth / (cardWidth + gapWidth))
         let offset = 0;
-
-        console.log({cardsCount, fullWidth, visibleWidth, sliderLength: sliderLine.childElementCount})
         
         function checkOffsetAndDisableBtn() {
             if(offset === 0) {
@@ -72,7 +69,10 @@
             if(offset > -itemFullWidth)
                 offset = 0;
             else
-                offset += itemFullWidth;
+                if(offset === visibleWidth - fullWidth)
+                    offset += cardWidth - (visibleWidth - visibleItemsCount * (cardWidth + gapWidth));
+                else
+                    offset += itemFullWidth;
             sliderLine.style.left = offset + 'px';
             checkOffsetAndDisableBtn()
         }
@@ -106,29 +106,4 @@
             swipeLength = 0
         })
     })
-        // articles.forEach((article, i, arr) => {
-        //     const isImgValid = article.urlToImage && article.urlToImage.match(/\.(jpeg|jpg|png)$/) != null
-        //     const isDescriptionValid = !(/<\/?[a-z][\s\S]*>/i.test(article.description))
-        //     const isTitleValid = !(/<\/?[a-z][\s\S]*>/i.test(article.title))
-        //     if(isImgValid && isDescriptionValid && isTitleValid) {
-                 
-        //     }
-        //     console.log(article.urlToImage)
-        //     fetch(article.urlToImage, {mode: "no-cors"})
-        //         .then(() => {
-        //             console.log('img')
-        //             sliderLine.innerHTML += `
-        //                 <a class="news-card" href="${article.url}")>
-        //                     <div class="news-card__img">
-        //                         <img src="${article.urlToImage}" alt="news-img"/>    
-        //                     </div>
-        //                     <h1 class="news-card__title">${article.title}</h1>
-        //                     <p class="news-card__description">${article.description}</p>
-        //                 </a>
-        //             `;
-        //         })  
-        //     if(i === arr.length - 1) res()
-        // })
-
-        
 }())
