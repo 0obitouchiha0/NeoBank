@@ -1,0 +1,43 @@
+.input {
+    margin-top: 60px;
+    padding: 22px 32px;
+    border-radius: 20px;
+    background: #FFFFFF;
+    box-shadow: 0px 10px 20px rgba(54, 58, 120, 0.1);
+    display: flex;
+    align-items: center;
+    &__field {
+        width: 250px;
+        margin: 0 10px;
+        border: none;
+        outline: none;
+        &, &::placeholder {
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 147.4%;
+            letter-spacing: 0.02em;
+            color: #9092B0;
+        }
+    }
+    &-button {
+        cursor: pointer;
+        padding: 10px 33px 10px 13px;
+        border-radius: 20px;
+        background-color: #686DF1;
+        border: none;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        &__icon {
+            width: 22px;
+            height: 24px;
+        }
+        &__text {
+            font-family: 'Ubuntu';
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 18px;
+            color: #fff;
+        }
+    }
+}

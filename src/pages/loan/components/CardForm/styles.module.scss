@@ -1,0 +1,144 @@
+.form {
+    font-family: 'Ubuntu';
+    display: flex;
+    flex-direction: column;
+    margin-top: 44px;
+    background: #fff;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.08), 0px 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 28px;
+    padding: 32px;
+    &-amount {
+        display: grid;
+        grid-template-columns: 1fr 1px 1fr;
+        gap: 40px;
+        &__choose {
+            flex-grow: 1;
+            &-title {
+                margin-bottom: 32px;
+                display: flex;
+                justify-content: space-between;
+                h1 {
+                    font-weight: 700;
+                    font-size: 30px;
+                }
+                h4 {
+                    font-weight: 500;
+                    font-size: 16px;
+                }
+            }
+        }
+        &__dash {
+            width: 1px;
+            background-image: repeating-linear-gradient(to bottom, transparent, transparent 4px, rgba(128, 128, 128, 0.4) 4px, rgba(128, 128, 128, 0.4) 8px);
+        }
+        &__result {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            h2 {
+                margin-bottom: 16px;
+                font-weight: 700;
+                font-size: 20px;
+            }
+            span {
+                margin-bottom: 10px;
+                font-weight: 500;
+                font-size: 16px;
+            }
+            div {
+                height: 1px;
+                width: 33%;
+                background: rgba(128, 128, 128, 0.2);
+            }
+        }
+    }
+    &-info {
+        margin-top: 32px;
+        &__title {
+            font-weight: 700;
+            font-size: 20px;
+            margin-bottom: 26px;
+        }
+        &__inputs {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 16px;
+        }
+    }
+    &__submit {
+        cursor: pointer;
+        border: none;
+        align-self: end;
+        margin-top: 24px;
+        padding: 16px 38px 14px 38px;
+        background: #003CFF;
+        border-radius: 8px;
+        color: #fff;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 112%;
+        letter-spacing: 0.02em;
+        font-feature-settings: 'salt' on, 'liga' off;
+        transition: background-color .2s ease;
+        &:hover {
+            background-color: #7796C0;
+        }
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .form {
+        &-amount {
+            grid-template-columns: 2fr 1px 1fr;
+            gap: 20px;
+            &__choose {
+                &-title {
+                    flex-direction: column-reverse;
+                    gap: 10px;
+                    h1 {
+                        font-size: 26px;
+                    }
+                }
+            }
+            &__result {
+                h2 {
+                    font-size: 18px;
+                }
+            }
+        }
+        &-info {
+            &__inputs {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 780px) {
+    .form {
+        &-amount {
+            gap: 15px;
+        }
+        &-info {
+            &__inputs {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 590px) {
+    .form {
+        &-amount {
+            grid-template-columns: 1fr;
+            &__dash {
+                display: none;
+            }
+        }
+        &-info {
+            &__inputs {
+                grid-template-columns: 1fr;
+            }
+        }
+    }
+}

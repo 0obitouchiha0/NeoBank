@@ -1,0 +1,33 @@
+.cards {
+    margin-top: 33px;
+    display: grid;
+    grid-template-areas: 
+    'a b c'
+    'd e f';
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+}
+
+@media screen and (max-width: 1300px) {
+    .cards {
+        grid-template-areas: 
+        'a b'
+        'd c'
+        'e f';
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .cards {
+        grid-template-areas: 
+        'a'
+        'b'
+        'c'
+        'd'
+        'e'
+        'f';
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}

@@ -1,0 +1,16 @@
+.cards {
+    display: grid;
+    grid-template-areas: 
+                'img img'
+                'img img';
+    grid-gap: 16px;
+}
+
+@media screen and (max-width: 1300px) {
+    .cards {
+        margin-top: 30px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px;
+    }
+}

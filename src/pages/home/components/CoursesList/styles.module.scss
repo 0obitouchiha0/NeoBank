@@ -1,0 +1,16 @@
+.courses-list {
+    padding: 0;
+    margin-bottom: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    gap: 32px;
+    width: 60%;
+}
+@media screen and (max-width: 1300px) {
+    .courses-list {
+        margin-bottom: 30px;
+        gap: 24px;
+        width: 80%;
+    }
+}

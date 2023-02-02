@@ -1,0 +1,437 @@
+    .main {
+        .design {
+            margin-top: 130px;
+            display: flex;
+            justify-content: space-between;
+            .info {
+                width: 48%;
+                &__title {
+                    font-family: 'Ubuntu';
+                    font-weight: 700;
+                    font-size: 48px;
+                    line-height: 104%;
+                    color: #1C1C1E;
+                    margin-bottom: 36px;
+                }
+                .blue-link {
+                    display: inline-block;
+                    padding: 16px;
+                    background-color: #003CFF;
+                    border-radius: 16px;
+                    font-family: 'Ubuntu';
+                    font-size: 16px;
+                    line-height: 112%;
+                    letter-spacing: 0.02em;
+                    font-feature-settings: 'salt' on, 'liga' off;
+                    color: #fff;
+                    transition: background-color .2s ease;
+                    &:hover {
+                        background-color: #7796C0;
+                    }
+                }
+            }
+        } 
+
+        .features {
+            margin-top: 112px;
+            display: flex;
+            gap: 75px;
+            &__img-container {
+                img {
+                    width: 100%;
+                }
+            };
+            .content {
+                margin-top: 75px;
+                &__title {
+                    font-family: 'Rubik';
+                    font-weight: 500;
+                    font-size: 35px;
+                    line-height: 143%;
+                    color: #0B132A;
+                    margin-bottom: 20px;
+                }
+                &__subtitle {
+                    font-family: 'Rubik';
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 188%;
+                    color: #4F5665;
+                    margin-bottom: 25px;
+                }
+                .features-list {
+                    margin: 0;
+                    padding: 0;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    &__item {
+                        display: flex;
+                        gap: 16px;
+                        font-family: 'Rubik';
+                        font-weight: 400;
+                        font-size: 14px;
+                        line-height: 214%;
+                        color: #4F5665;
+                    }
+                }
+            }
+        }
+        .exchange {
+            background: linear-gradient(358.2deg, rgba(178, 178, 178, 0.8) 8.06%, rgba(178, 178, 178, 0) 67.93%), rgba(244, 244, 244, 0.9);
+            mix-blend-mode: normal;
+            box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.08), 0px 2px 4px rgba(187, 187, 187, 0.2);
+            border-radius: 28px;
+            margin-top: 50px;
+            padding: 32px;
+            font-family: 'Ubuntu';
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            &-main {
+                &__title {
+                    font-weight: 500;
+                    font-size: 30px;
+                    line-height: 167%;
+                    color: #1C1C1E;
+                    margin-bottom: 25px;
+                }
+                &__subtitle {
+                    font-weight: 500;
+                    font-size: 20px;
+                    line-height: 250%;
+                    margin-bottom: 32px;
+                }
+                .courses-list {
+                    margin-bottom: 50px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: start;
+                    gap: 32px;
+                    width: 60%;
+                    &__item {
+                        width: 120px;
+                        min-width: calc(33% - 32px);
+                        font-weight: 700;
+                        font-size: 20px;
+                        line-height: 112%;
+                        letter-spacing: 0.02em;
+                        .course-name {
+                            margin-right: 20px;
+                            color: #808080;
+                        }
+                    }
+                }
+                &__all-rates-link {
+                    font-weight: 700;
+                    font-size: 20px;
+                    line-height: 112%;
+                    letter-spacing: 0.02em;
+                    color: #fff;
+                }
+            }
+            &-aside {
+                display: flex;
+                flex-direction: column;
+                align-items: end;
+                justify-content: space-between;
+                &__last-update {
+                    font-weight: 500;
+                    font-size: 16px;
+                    line-height: 120%;
+                }
+            }
+        }
+        .map {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+            font-family: 'Ubuntu';
+            font-weight: 500;
+            line-height: 50px;
+            &__title {
+                margin-bottom: 8px;
+                font-size: 30px;
+            }
+            &__subtitle {
+                margin-bottom: 50px;
+                font-size: 16px;
+            }
+            &__img {
+                width: 81.5%;
+            }
+        }
+        .news {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 48px;
+            &__title {
+                font-family: 'Ubuntu';
+                font-weight: 500;
+                line-height: 50px;
+                font-size: 30px;
+                text-align: center;
+            }
+            &__subtitle {
+                font-family: 'Ubuntu';
+                font-weight: 500;
+                line-height: 50px;
+                font-size: 16px;
+                margin-top: 8px;
+                text-align: center;
+            }
+            &-btns {
+                margin-top: 48px;
+                width: 100%;
+                display: flex;
+                justify-content: end;
+                gap: 20px;
+                &__item {
+                    cursor: pointer;
+                    border: none;
+                    outline: none;
+                    border-radius: 50%;
+                    padding: 20px;
+                    background-color: #003CFF;
+                    svg path {
+                        stroke: #fff;
+                    }
+                    &:disabled {
+                        border: 1px solid #003CFF;
+                        background-color: #fff;
+                        svg path {
+                            stroke: #222;
+                        }
+                    }
+                }
+
+            }
+        }
+        .subscription {
+            margin-top: 175px;
+            font-family: 'Ubuntu';
+            line-height: 147.4%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            &__title {
+                font-weight: 700;
+                font-size: 24px;
+                color: #EB801D;
+            }
+            &__subtitle {
+                &-firstline {
+                    font-size: 30px;
+                    color: #1C1C1E;
+                    margin-top: 30px;
+                    font-weight: 700;
+                    
+                }
+                &-secondline {
+                    font-size: 30px;
+                    color: #1C1C1E;
+                    margin-top: 25px;
+                    font-weight: 500;
+                }
+            }
+            .input {
+                margin-top: 60px;
+                padding: 22px 32px;
+                border-radius: 20px;
+                background: #FFFFFF;
+                box-shadow: 0px 10px 20px rgba(54, 58, 120, 0.1);
+                display: flex;
+                align-items: center;
+                &__field {
+                    width: 250px;
+                    margin: 0 10px;
+                    border: none;
+                    outline: none;
+                    &, &::placeholder {
+                        font-weight: 400;
+                        font-size: 20px;
+                        line-height: 147.4%;
+                        letter-spacing: 0.02em;
+                        color: #9092B0;
+                    }
+                }
+                &-button {
+                    padding: 10px 33px 10px 13px;
+                    border-radius: 20px;
+                    background-color: #686DF1;
+                    border: none;
+                    display: flex;
+                    align-items: center;
+                    gap: 18px;
+                    &__icon {
+                        width: 22px;
+                        height: 24px;
+                    }
+                    &__text {
+                        font-family: 'Ubuntu';
+                        font-weight: 700;
+                        font-size: 16px;
+                        line-height: 18px;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+
+@media screen and (max-width: 1300px) {
+        .main {
+            .design {
+                margin-top: 75px;
+                flex-direction: column;
+                justify-content: center;
+                .info {
+                    text-align: center;
+                    width: 100%;
+                    &__title {
+                        font-size: 38px;
+                        margin-bottom: 30px;
+                    }
+                }
+            } 
+            .features {
+                margin-top: 70px;
+                gap: 50px;
+                .content {
+                    margin: 0;
+                    &__title {
+                        font-size: 24px;
+                        margin-bottom: 15px;
+                    }
+                    &__subtitle {
+                        font-size: 16px;
+                        margin-bottom: 20px;
+                    }
+                    .features-list {
+                        gap: 5px;
+                        &__item {
+                            display: flex;
+                            gap: 16px;
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+            .exchange {
+                border-radius: 24px;
+                padding: 28px;
+                &-main {
+                    &__title {
+                        font-size: 24px;
+                        margin-bottom: 10px;
+                    }
+                    &__subtitle {
+                        font-size: 18px;
+                        margin-bottom: 20px;
+                    }
+                    .courses-list {
+                        margin-bottom: 30px;
+                        gap: 24px;
+                        width: 80%;
+                        &__item {
+                            .course-name {
+                                margin-right: 10px;
+                            }
+                        }
+                    }
+                    &__all-rates-link {
+                        font-size: 18px;
+                    }
+                }
+                &-aside {
+                    &__last-update {
+                        text-align: right;
+                    }
+                }
+            }
+            .map {
+                margin-top: 50px;
+                text-align: center;
+            }
+            .subscription {
+                margin-top: 100px;
+                &__title {
+                    font-size: 22px;
+                }
+                &__subtitle {
+                    &-firstline {
+                        margin-top: 20px;
+                        font-size: 28px;
+                    }
+                    &-secondline {
+                        margin-top: 20px;
+                        font-size: 28px;
+                    }
+                }
+                .input {
+                    margin-top: 40px;
+                    padding: 12px 22px;
+                    border-radius: 16px;
+                    &__icon {
+                        width: 24px;
+                        height: 27px;
+                        margin-bottom: 1px;
+                    }
+                    &__field {
+                        outline: none;
+                        &, &::placeholder {
+                            font-size: 18px;
+                        }
+                    }
+                    &-button {
+                        padding: 10px 22px 10px 10px;
+                        border-radius: 18px;
+                        gap: 10px;
+                        &__icon {
+                            height: 20px;
+                        }
+                        &__text {
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+    }
+}
+
+@media screen and (max-width: 920px) {
+        .main {
+            .design {
+                .info__title {
+                    font-size: 30px;
+                }
+                .cards__item img {
+                    width: 200px;
+                }
+            } 
+            .features {
+                flex-direction: column;
+                align-items: center;
+                &__img-container {
+                    width: 300px;
+                }
+            }
+            .map {
+                &__title {
+                    line-height: 40px;
+                    margin-bottom: 20px;
+                }
+                &__subtitle {
+                    line-height: 24px;
+                }
+            }
+            .subscription {
+                margin-top: 50px;
+                .input__field {
+                    width: 200px;
+                }
+            }
+        }
+    }
