@@ -8,7 +8,7 @@ interface ChooseAmountProps {
     onChange: (value: number) => void
 }
 
-function ChooseAmount({min, max, value, onChange}: ChooseAmountProps) {
+const ChooseAmount = React.forwardRef<HTMLDivElement, ChooseAmountProps>(({min, max, value, onChange}, ref) => {
     const inputRef = React.useRef<HTMLInputElement>(null);
 
     React.useEffect(() => {
@@ -23,7 +23,7 @@ function ChooseAmount({min, max, value, onChange}: ChooseAmountProps) {
     }
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} ref={ref}>
             <h3 className={styles.container__title}>Select amount</h3>
             <span className={styles.container__current}>{value}</span>
             <input className={styles.container__input} type="range" min={min} max={max} step={1} value={value} onChange={inputChangeHandler} ref={inputRef}/>
@@ -33,6 +33,8 @@ function ChooseAmount({min, max, value, onChange}: ChooseAmountProps) {
             </div>
         </div>
     );
-}
+});
+
+ChooseAmount.displayName = 'ChooseAmount';
 
 export default ChooseAmount;

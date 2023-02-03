@@ -13,9 +13,9 @@ interface NumberInputProps {
     isSubmitted?: boolean,
 }
 
-function NumberInput({labelText, placeholder, isRequired, error, isSubmitted, ...rest}: NumberInputProps) {
+const NumberInput = React.forwardRef<HTMLDivElement, NumberInputProps>(({labelText, placeholder, isRequired, error, isSubmitted, ...rest}, ref) => {
     return (
-        <div className={styles.container}>
+        <div className={styles.container} ref={ref}>
             <Label text={labelText} isRequired={isRequired} htmlFor="input"/>
             {isSubmitted && !error && <img src={correctMarkImg} alt={'correct'}/>}
             <input
@@ -31,6 +31,8 @@ function NumberInput({labelText, placeholder, isRequired, error, isSubmitted, ..
             </>}
         </div>
     );
-}
+});
+
+NumberInput.displayName = 'NumberInput';
 
 export default NumberInput;

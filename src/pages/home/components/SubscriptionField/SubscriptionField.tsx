@@ -6,19 +6,12 @@ import arrowImg from '../../../../assets/pagesImages/homePage/arrow.svg';
 import axios from 'axios';
 
 function SubscriptionField() {
-    const [isSubscribed, setIsSubscribed] = React.useState(false);
+    const [isSubscribed, setIsSubscribed] = React.useState(!!localStorage.getItem('isSubscribed'));
     const [emailFieldValue, setEmailFieldValue] = React.useState('');
 
-    React.useEffect(() => {
-        const localStorageIsSubscribedFlag = !!localStorage.getItem('isSubscribed');
-        setIsSubscribed(localStorageIsSubscribedFlag);
-    }, []);
-
     function subscribeHandler() {
-        const data = new FormData();
-        data.append('email', emailFieldValue);
         if(!isSubscribed) {
-            axios.post('http://localhost:8080/email', data).then(() => {
+            axios.post('http://localhost:8080/email', emailFieldValue).then(() => {
                 localStorage.setItem('isSubscribed', 'true');
                 setIsSubscribed(true);
             });
@@ -33,7 +26,7 @@ function SubscriptionField() {
         return (
             <div className={styles.input}>
                 <img src={envelopeImg} alt="envelope" className={styles.input__icon}/>
-                <input type="text" placeholder="Your email" className={styles.input__field} value={emailFieldValue} onChange={inputOnChangeHandler}/>
+                <input type="email" placeholder="Your email" className={styles.input__field} value={emailFieldValue} onChange={inputOnChangeHandler}/>
                 <button className={styles['input-button']} onClick={subscribeHandler}>
                     <img src={arrowImg} alt="arrow" className={styles['input-button__icon']}/>
                     <span className={styles['input-button__text']}>Subscribe</span>

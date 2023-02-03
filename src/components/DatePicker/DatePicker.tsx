@@ -13,9 +13,9 @@ interface DatePickerProps {
     isSubmitted?: boolean,
 }
 
-function DatePicker({labelText, placeholder, isRequired, error, isSubmitted, ...rest}: DatePickerProps) {
+const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(({labelText, placeholder, isRequired, error, isSubmitted, ...rest}, ref) => {
     return (
-        <div className={styles.container}>
+        <div className={styles.container} ref={ref}>
             <Label text={labelText} isRequired={isRequired} htmlFor="input"/>
             {isSubmitted && !error && <img src={correctMarkImg} alt={'correct'}/>}
             <input
@@ -31,6 +31,8 @@ function DatePicker({labelText, placeholder, isRequired, error, isSubmitted, ...
             </>}
         </div>
     );
-}
+});
+
+DatePicker.displayName = 'DatePicker';
 
 export default DatePicker;

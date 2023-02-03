@@ -10,9 +10,8 @@ function FeaturesList() {
     const [currenciesData, setCurrenciesData] = React.useState<{currency: string, course: number}[]>([]);
 
     React.useEffect(() => {
-        let currenciesCount = 0;
         async function getAndSetCurrencies() {
-            for(const currency of currencies) {
+            const data = currencies.map(async (currency) => {
                 const course = await axios.get<number>(`https://currency-exchange.p.rapidapi.com/exchange?to=RUB&from=${currency}`, {
                     headers: {
                         'X-RapidAPI-Key': 'cbea4abd97msh640a68bb4870e2ep143135jsna1b8e410fbe0',
@@ -20,13 +19,12 @@ function FeaturesList() {
                     }
                 })
                     .then(res => Math.round(res.data * 100) / 100);
-                if(currenciesCount >= currencies.length) {
-                    setCurrenciesData([]);
-                    currenciesCount = 0;
-                }
-                currenciesCount++;
-                setCurrenciesData(prev => [...prev, {currency, course}]);
-            }
+                return {course, currency};
+            });
+
+            Promise.all(data).then(awaitedData => {
+                setCurrenciesData(awaitedData);
+            });
         }
 
         getAndSetCurrencies();

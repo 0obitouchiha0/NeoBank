@@ -3,6 +3,26 @@ import clsx from 'clsx';
 
 import styles from './styles.module.scss';
 import logo from '../../assets/LayoutImages/logo.png';
+import { Link } from 'react-router-dom';
+
+const headerLinks = [
+    {
+        to: '/loan',
+        text: 'Credit Card'
+    },
+    {
+        to: '#',
+        text: 'Product'
+    },
+    {
+        to: '#',
+        text: 'Account'
+    },
+    {
+        to: '#',
+        text: 'Resourses'
+    },
+];
 
 interface LayoutProps {
     children: React.ReactElement
@@ -18,10 +38,9 @@ function Layout({children}: LayoutProps) {
                     <nav className={styles.nav}>
                         <a href="#" className={styles['nav__home-link']}>NeoBank</a>
                         <div className={styles.nav__links}>
-                            <a href="#" className={styles['nav__links-link']}>Credit Card</a>
-                            <a href="#" className={styles['nav__links-link']}>Product</a>
-                            <a href="#" className={styles['nav__links-link']}>Account</a>
-                            <a href="#" className={styles['nav__links-link']}>Resourses</a>
+                            {headerLinks.map(link => (
+                                <Link key={link.text} to={link.to} className={styles['nav__links-link']}>{link.text}</Link>
+                            ))}
                         </div>
                         <a href="#" className={clsx(styles['nav__bank-link'], styles['blue-link'])}>Online Bank</a>
                     </nav>
@@ -39,34 +58,34 @@ function Layout({children}: LayoutProps) {
                     </div>
                     <ul className={styles.links}>
                         <li className={styles.links__item}>
-                            <a href="">About bank</a>
+                            <Link to="#">About bank</Link>
                         </li>
                         <li className={styles.links__item}>
-                            <a href="">Ask a Question</a>
+                            <Link to="#">Ask a Question</Link>
                         </li>
                         <li className={styles.links__item}>
-                            <a href="">Quality of service</a>
+                            <Link to="#">Quality of service</Link>
                         </li>
                         <li className={styles.links__item}>
-                            <a href="">Requisites</a>
+                            <Link to="#">Requisites</Link>
                         </li>
                         <li className={styles.links__item}>
-                            <a href="">Press center</a>
+                            <Link to="#">Press center</Link>
                         </li>
                         <li className={styles.links__item}>
-                            <a href="">Bank career</a>
+                            <Link to="#">Bank career</Link>
                         </li>
                         <li className={styles.links__item}>
-                            <a href="">Investors</a>
+                            <Link to="#">Investors</Link>
                         </li>
                         <li className={styles.links__item}>
-                            <a href="">Investors</a>
+                            <Link to="#">Investors</Link>
                         </li>
                         <li className={styles.links__item}>
-                            <a href="">Business and processes</a>
+                            <Link to="#">Business and processes</Link>
                         </li>
                         <li className={styles.links__item}>
-                            <a href="">Compliance and business ethics</a>
+                            <Link to="#">Compliance and business ethics</Link>
                         </li>
                     </ul>
                     <div className={styles.footer__line}></div>

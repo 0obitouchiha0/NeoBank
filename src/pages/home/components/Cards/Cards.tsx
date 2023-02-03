@@ -7,8 +7,9 @@ import card1Img3 from '../../../../assets/pagesImages/homePage/cardImage3.png';
 import card1Img4 from '../../../../assets/pagesImages/homePage/cardImage4.png';
 import CardsItem from './CardsItem/CardsItem';
 
+const imgSources = [card1Img1, card1Img2, card1Img3, card1Img4];
+
 function Cards() {
-    const imgSources = [card1Img1, card1Img2, card1Img3, card1Img4];
     return (
         <div className={styles.cards}>
             {imgSources.map((src, index) => (

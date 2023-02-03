@@ -9,9 +9,9 @@ interface SelectProps {
     isRequired: boolean
 }
 
-function Select({labelText, options, isRequired, ...rest}: SelectProps) {
+const Select = React.forwardRef<HTMLDivElement, SelectProps>(({labelText, options, isRequired, ...rest}, ref) => {
     return (
-        <div className={styles.container}>
+        <div className={styles.container} ref={ref}>
             <Label text={labelText} isRequired={isRequired} htmlFor="select"/>
             <img src={arrowDown} alt="arrow" />
             <select
@@ -25,6 +25,8 @@ function Select({labelText, options, isRequired, ...rest}: SelectProps) {
             </select>
         </div>
     );
-}
+});
+
+Select.displayName = 'Select';
 
 export default Select;

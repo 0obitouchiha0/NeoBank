@@ -13,9 +13,9 @@ interface TextInputProps {
     isSubmitted?: boolean,
 }
 
-function TextInput({labelText, placeholder, isRequired, error, isSubmitted, ...rest}: TextInputProps) {
+const TextInput = React.forwardRef<HTMLDivElement, TextInputProps>(({labelText, placeholder, isRequired, error, isSubmitted, ...rest}, ref) => {
     return (
-        <div className={styles.container}>
+        <div className={styles.container} ref={ref}>
             <Label text={labelText} isRequired={isRequired} htmlFor="input"/>
             {isSubmitted && !error && <img src={correctMarkImg} alt={'correct'}/>}
             <input
@@ -31,6 +31,8 @@ function TextInput({labelText, placeholder, isRequired, error, isSubmitted, ...r
             </>}
         </div>
     );
-}
+});
+
+TextInput.displayName = 'TextInput';
 
 export default TextInput;
