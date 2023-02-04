@@ -28,9 +28,13 @@ function FeaturesList() {
         }
 
         getAndSetCurrencies();
-        setInterval(async () => {
+        const interval = setInterval(async () => {
             getAndSetCurrencies();
         }, 900000);
+
+        return () => {
+            clearInterval(interval);
+        };
     }, []);
 
     return (

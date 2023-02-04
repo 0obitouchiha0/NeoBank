@@ -64,14 +64,20 @@ const schema = yup.object({
     }),
     firstName: yup.string().required(errorMessages.firstName),
     lastName: yup.string().required(errorMessages.lastName),
-    middleName: yup.string(),
+    middleName: yup.string().required(),
     email: yup.string().required(errorMessages.email).email(errorMessages.email),
     birthdate: yup.date().typeError(errorMessages.birthdate).required(errorMessages.birthdate).test(function(value: Date | undefined) {
         if(!value) return false;
         return new Date(value.getFullYear() + 18, value.getMonth(), value.getDate()) <= new Date() ? true : this.createError({ message: errorMessages.birthdate});
     }),
-    passportSeries: yup.number().typeError(errorMessages.passportSeries).required(errorMessages.passportSeries).min(1000, errorMessages.passportSeries).max(9999, errorMessages.passportSeries),
-    passportNumber: yup.number().typeError(errorMessages.passportNumber).required(errorMessages.passportNumber).min(100000, errorMessages.passportNumber).max(999999, errorMessages.passportNumber),
+    passportSeries: yup.string().required(errorMessages.passportSeries).test(function(num) {
+        if(!num) return false;
+        return /[0-9]{4}/.test(String(num)) ? true : this.createError({ message: errorMessages.passportSeries});
+    }),
+    passportNumber: yup.string().required(errorMessages.passportNumber).test(function(num) {
+        if(!num) return false;
+        return /[0-9]{6}/.test(String(num)) ? true : this.createError({ message: errorMessages.passportNumber});
+    }),
 }).required();
 
 const defaultValues = {
@@ -82,8 +88,8 @@ const defaultValues = {
     middleName: '',
     email: '',
     birthdate: new Date(),
-    passportSeries: 0,
-    passportNumber: 0
+    passportSeries: 1,
+    passportNumber: 1
 
 };
 
@@ -91,7 +97,7 @@ const CardForm = React.forwardRef<HTMLFormElement>((_, ref) => {
 
     const [isLoading, setIsLoading] = React.useState(false);
 
-    const { handleSubmit, control, getValues, formState: { errors } } = useForm<FormValues>({
+    const { handleSubmit, control, formState: { errors } } = useForm<FormValues>({
         defaultValues,
         resolver: yupResolver(schema)
     });
@@ -111,9 +117,8 @@ const CardForm = React.forwardRef<HTMLFormElement>((_, ref) => {
             .then(res => res.data)
             .then(res => {
                 console.log(res);
-                setIsLoading(false);
             })
-            .catch(() => {
+            .finally(() => {
                 setIsLoading(false);
             });
     };
@@ -124,25 +129,11 @@ const CardForm = React.forwardRef<HTMLFormElement>((_, ref) => {
 
     return (
         <form className={styles.form} onSubmit={handleSubmit(onSubmit, onError)} ref={ref}>
-            <div className={styles['form-amount']}>
-                <div className={styles['form-amount__choose']}>
-                    <div className={styles['form-amount__choose-title']}>
-                        <h1>Customize your card</h1>
-                        <h4>Step 1 of 5</h4>
-                    </div>
-                    <Controller
-                        name="amount"
-                        control={control}
-                        render={({ field }) => <ChooseAmount {...field} min={amountBorders.min} max={amountBorders.max}/>}
-                    />
-                </div>
-                <div className={styles['form-amount__dash']}></div>
-                <div className={styles['form-amount__result']}>
-                    <h2>You have chosen the amount</h2>
-                    <span>{getValues().amount}</span>
-                    <div></div>
-                </div>
-            </div>
+            <Controller
+                name="amount"
+                control={control}
+                render={({ field }) => <ChooseAmount {...field} min={amountBorders.min} max={amountBorders.max}/>}
+            />
             <div className={styles['form-info']}>
                 <h2 className={styles['form-info__title']}>Contact Information</h2>
                 <div className={styles['form-info__inputs']}>
@@ -159,7 +150,7 @@ const CardForm = React.forwardRef<HTMLFormElement>((_, ref) => {
                     <Controller
                         name="middleName"
                         control={control}
-                        render={({ field, formState: {isSubmitted} }) => <TextInput isSubmitted={isSubmitted} {...field} labelText={'Your patronymic'} placeholder={'For Example Victorovich'} isRequired={false}/>}
+                        render={({ field, formState: {isSubmitted} }) => <TextInput isSubmitted={isSubmitted} {...field} labelText={'Your patronymic'} placeholder={'For Example Victorovich'} isRequired={true}/>}
                     />
                     <Controller
                         name="term"

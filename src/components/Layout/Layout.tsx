@@ -11,15 +11,15 @@ const headerLinks = [
         text: 'Credit Card'
     },
     {
-        to: '#',
+        to: '/',
         text: 'Product'
     },
     {
-        to: '#',
+        to: '/',
         text: 'Account'
     },
     {
-        to: '#',
+        to: '/',
         text: 'Resourses'
     },
 ];
@@ -36,7 +36,7 @@ function Layout({children}: LayoutProps) {
                     <input type="checkbox" id={styles.burger}/>
                     <label htmlFor={styles.burger} className={styles.label}>☰</label>
                     <nav className={styles.nav}>
-                        <a href="#" className={styles['nav__home-link']}>NeoBank</a>
+                        <Link to="/" className={styles['nav__home-link']}>NeoBank</Link>
                         <div className={styles.nav__links}>
                             {headerLinks.map(link => (
                                 <Link key={link.text} to={link.to} className={styles['nav__links-link']}>{link.text}</Link>

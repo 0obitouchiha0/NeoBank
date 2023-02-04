@@ -7,7 +7,7 @@ function TabPageCashback() {
     return (
         <div className={styles.cards}>
             {cardsData.map(({title, description, color, area}) => (
-                <InfoCard key={title} title={title} description={description} color={color} area={area}/>
+                <InfoCard key={description} title={title} description={description} color={color} area={area}/>
             ))}
         </div>
     );

@@ -13,7 +13,7 @@ function TabPageFAQ() {
     }
 
     function accordionItemClickHandler(title: string) {
-        if(openAccordion === title) setOpenAccordion('');
+        if(isAccordionOpen(title)) setOpenAccordion('');
         else setOpenAccordion(title);
     }
 

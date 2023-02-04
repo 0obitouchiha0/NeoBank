@@ -11,9 +11,11 @@ interface NumberInputProps {
     isRequired: boolean,
     error?: string,
     isSubmitted?: boolean,
+    value: number
 }
 
-const NumberInput = React.forwardRef<HTMLDivElement, NumberInputProps>(({labelText, placeholder, isRequired, error, isSubmitted, ...rest}, ref) => {
+const NumberInput = React.forwardRef<HTMLDivElement, NumberInputProps>(({labelText, placeholder, isRequired, error, isSubmitted, value, ...rest}, ref) => {
+    console.log(value);
     return (
         <div className={styles.container} ref={ref}>
             <Label text={labelText} isRequired={isRequired} htmlFor="input"/>
