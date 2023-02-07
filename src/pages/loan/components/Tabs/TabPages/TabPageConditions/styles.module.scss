@@ -1,0 +1,29 @@
+.conditions-list {
+    margin-top: 16px;
+    &-item {
+        display: grid;
+        grid-template-columns: 25% 1fr;
+        font-weight: 500;
+        font-size: 16px;
+        letter-spacing: 0.02em;
+        padding: 24px 0;
+        &:not(:last-child) {
+            border-bottom: 1px solid #7F92AC;
+        }
+        span {
+            color: #000000;
+            margin-right: 20px;
+        }
+        p {
+            color: #434343;
+        }
+    }
+}
+
+@media screen and (max-width: 920px) {
+    .conditions-list {
+        &-item {
+            grid-template-columns: 35% 1fr;
+        }
+    }
+}

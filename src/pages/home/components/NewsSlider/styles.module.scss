@@ -1,0 +1,38 @@
+.news-slider {
+    width: 100%;
+    overflow: hidden;
+    &__line {
+        transition: all ease 0.5s;
+        position: relative;
+        left: 0;
+        display: flex;
+        gap: 80px;
+        margin-top: 48px;
+    }
+}
+.news-btns {
+    margin-top: 48px;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    gap: 20px;
+    &__item {
+        cursor: pointer;
+        border: none;
+        outline: none;
+        border-radius: 50%;
+        padding: 20px;
+        background-color: #003CFF;
+        svg path {
+            stroke: #fff;
+        }
+        &:disabled {
+            border: 1px solid #003CFF;
+            background-color: #fff;
+            svg path {
+                stroke: #222;
+            }
+        }
+    }
+
+}

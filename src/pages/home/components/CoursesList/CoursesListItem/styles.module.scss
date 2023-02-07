@@ -1,0 +1,18 @@
+.courses-list__item {
+    list-style: none;
+    width: 120px;
+    min-width: calc(33% - 32px);
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 112%;
+    letter-spacing: 0.02em;
+    .course-name {
+        margin-right: 20px;
+        color: #808080;
+    }
+}
+@media screen and (max-width: 1300px) {
+    .course-name {
+        margin-right: 10px;
+    }
+}

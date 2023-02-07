@@ -1,0 +1,43 @@
+.accordion {
+    .accordion-section {
+        &__title {
+            margin: 32px 0;
+            font-weight: 700;
+            font-size: 30px;
+            line-height: 147.4%;
+        }
+        &-list {
+            &__item {
+                position: relative;
+                cursor: pointer;
+                padding: 32px;
+                font-size: 16px;
+                border: 1px solid #E2E8F0;
+                &:not(:last-child) {
+                    border-bottom: none;
+                }
+                h3 {
+                    font-weight: 500;
+                    line-height: 147.4%;
+                }
+                img {
+                    position: absolute;
+                    right: 38px;
+                    top: 36px;
+                }
+                p {
+                    letter-spacing: -0.02em;
+                    font-weight: 400;
+                    margin-top: 56px;
+                    line-height: 147.4%;
+                    color: #7B7454;
+                    display: none;
+                    transition: max-height 0.2s ease-out;
+                    &.active {
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+    }
+}

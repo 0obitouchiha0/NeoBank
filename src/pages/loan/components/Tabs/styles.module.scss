@@ -1,0 +1,29 @@
+.tabs {
+    font-family: 'Ubuntu';
+    margin-top: 48px;
+    &__links {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        border-bottom: 2px solid rgba(128, 128, 128, 0.2);
+        &-item {
+            cursor: pointer;
+            padding: 12px 14px;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 100%;
+            letter-spacing: 0.02em;
+            color: #7B7454;
+            position: relative;
+            &--active::after {
+                content: '';
+                position: absolute;
+                height: 2px;
+                width: 100%;
+                background-color: #7B7454;
+                bottom: -2px;
+                left: 0;
+            }
+        }
+    }
+}

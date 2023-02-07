@@ -1,0 +1,18 @@
+.card-content {
+    letter-spacing: 0.02em;
+    &__title {
+        font-weight: 700;
+        font-size: 36px;
+        line-height: 147.4%;
+    }
+    &__description {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 147.4%;
+        color: rgba(67, 67, 67, 0.9);
+        margin-bottom: 22px;
+    }
+    img {
+        margin-bottom: 30px;
+    }
+}

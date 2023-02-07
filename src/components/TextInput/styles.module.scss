@@ -1,0 +1,30 @@
+.container {
+    font-family: 'Ubuntu';
+    position: relative;
+    &__input {
+        width: 100%;
+        background: #F9F5E3;
+        border: 2px solid rgba(128, 128, 128, 0.2);
+        border-radius: 6px;
+        padding: 13px 16px;
+        outline: none;
+        &:focus {
+            border: 2px solid #5B35D5;
+        }
+        &--error {
+            border: 2px solid #FF5631;
+        }
+    }
+    &__error {
+        display: block;
+        margin-top: 3px;
+        font-weight: 500;
+        font-size: 16px;
+        color: #FF5631;
+    }
+    img {
+        position: absolute;
+        right: 19px;
+        top: 38px;
+    }
+}
