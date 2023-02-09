@@ -79,3 +79,29 @@
         padding: 16px;
     }
 }
+
+@media screen and (max-width: 920px) {
+    .container {
+        margin-top: 50px;
+    }
+    
+    .congratulations {
+        margin-top: 63px;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        align-items: center;
+        &__link {
+            font-family: 'Ubuntu';
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 112%;
+            letter-spacing: 0.02em;
+            font-feature-settings: 'salt' on, 'liga' off;
+            color: #fff;
+            background: #003CFF;
+            border-radius: 16px;
+            padding: 16px;
+        }
+    }
+}

@@ -9,6 +9,7 @@ import FeaturesItem from './components/FeaturesItem/FeaturesItem';
 import { useAppSelector } from '../../store/store';
 import Offers from './components/Offers/Offers';
 import Notification from '../../components/Notification/Notification';
+import { useNavigate } from 'react-router';
 
 const gettingCardStepsData = [
     {
@@ -45,8 +46,9 @@ const featuresData = [
 
 function LoanPage() {
 
-    const formRef = React.useRef<HTMLFormElement>(null);
-    const {offers, stage} = useAppSelector(state => state.application);
+    const mainBlockRef = React.useRef<HTMLDivElement>(null);
+    const {offers, stage, applicationId} = useAppSelector(state => state.application);
+    const navigate = useNavigate();
 
     function getComponentDependingOnStage() {
         if(stage === 0) return <CardForm />;
@@ -56,8 +58,14 @@ function LoanPage() {
         </div>;
     }
 
-    function scrollToForm() {
-        formRef.current?.scrollIntoView({ behavior: 'smooth' });
+    function handleBannerBtnClick() {
+        if(stage < 2) {
+            mainBlockRef.current?.scrollIntoView({ behavior: 'smooth' });
+        }
+        else if(stage === 2) navigate(`/loan/${applicationId}`);
+        else if(stage === 3) navigate(`/loan/${applicationId}/document`);
+        else if(stage === 4) navigate(`/loan/${applicationId}/document/sign`);
+        else if(stage === 5) navigate(`/loan/${applicationId}/code`);
     }
 
     return (
@@ -73,7 +81,7 @@ function LoanPage() {
                             ))}
                         </ul>
                         <div className={styles['banner__btn']}>
-                            <button onClick={scrollToForm}>Apply for card</button>
+                            <button onClick={handleBannerBtnClick}>{stage < 2 ? 'Apply for card' : 'Continue registration'}</button>
                         </div>
                         <div className={styles.banner__img}>
                             <img src={cardImg} alt="card" />
@@ -89,7 +97,9 @@ function LoanPage() {
                         ))}
                     </div>
                 </section>
-                {getComponentDependingOnStage()}
+                <div ref={mainBlockRef}>
+                    {getComponentDependingOnStage()}
+                </div>
             </>
         </Layout>
     );

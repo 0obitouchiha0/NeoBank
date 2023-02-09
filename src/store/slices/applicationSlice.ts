@@ -128,7 +128,6 @@ const applicationSlice = createSlice({
         });
         builder.addCase(sendFirstForm.rejected, (state) => {
             state.isLoading = false;
-            state.stage = 0;
         });
         builder.addCase(chooseOffer.fulfilled, (state, action: PayloadAction<number>) => {
             state.stage = 2;

@@ -58,3 +58,24 @@
         }
     }
 }
+
+.notification__container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 590px) {
+    .container {
+        margin-top: 50px;
+        .title {
+            align-items: start;
+            flex-direction: column-reverse;
+            gap: 20px;
+        }
+    }
+}

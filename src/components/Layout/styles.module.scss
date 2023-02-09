@@ -62,6 +62,14 @@
             }
         }
     }
+    .content {
+        flex-grow: 1;
+        position: relative;
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: center;
+        // align-items: center;
+    }
 }
 
 
@@ -164,6 +172,8 @@
 
 @media screen and (max-width: 920px) {
     .wrapper {
+        display: flex;
+        flex-direction: column;
         width: 80%;
         .header {
             transition: all 400ms cubic-bezier(.5, 1, 0.32, 1);

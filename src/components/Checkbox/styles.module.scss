@@ -1,5 +1,6 @@
 .container {
     display: flex;
+    align-items: center;
     gap: 14px;
     input {
         margin: 0;
@@ -11,5 +12,13 @@
         font-size: 18px;
         line-height: 112%;
         color: #1A202C;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .container {
+        label {
+            font-size: 14px;
+        }
     }
 }

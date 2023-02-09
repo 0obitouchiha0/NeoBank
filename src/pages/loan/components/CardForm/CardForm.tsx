@@ -61,7 +61,7 @@ const defaultValues = {
     passportNumber: 0
 };
 
-const CardForm = React.forwardRef<HTMLFormElement>((_, ref) => {
+function CardForm() {
 
     const isLoading = useAppSelector(state => state.application.isLoading);
     const dispatch = useAppDispatch(); 
@@ -80,7 +80,7 @@ const CardForm = React.forwardRef<HTMLFormElement>((_, ref) => {
     };
 
     return (
-        <form className={styles.form} onSubmit={handleSubmit(onSubmit, onError)} ref={ref}>
+        <form className={styles.form} onSubmit={handleSubmit(onSubmit, onError)}>
             <Controller
                 name="amount"
                 control={control}
@@ -134,8 +134,6 @@ const CardForm = React.forwardRef<HTMLFormElement>((_, ref) => {
             {isLoading ? <Loader /> : <button type="submit" className={styles.form__submit}>Continue</button>}
         </form>
     );
-});
-
-CardForm.displayName = 'CardForm';
+}
 
 export default CardForm;
