@@ -25,7 +25,6 @@ function Schedule() {
     const {applicationId: stateApplicationId, stage} = useAppSelector(state => state.application);
     const {applicationId} = useParams();
     const numberApplicationId = Number(applicationId);
-    console.log(stage);
     if(numberApplicationId !== stateApplicationId || stage < 3) return <Navigate to={'/loan'}/>;
 
     const [paymentSchedule, setPaymentSchedule] = React.useState<payment[]>([]);
@@ -38,11 +37,8 @@ function Schedule() {
             .then(res => res.data)
             .then(res => {
                 setPaymentSchedule(res.credit?.paymentSchedule);
-                console.log(res);
             });
     }, []);
-
-    console.log(paymentSchedule);
 
     function openModalHandler() {
         setIsModalOpen(true);

@@ -54,9 +54,7 @@ function LoanPage() {
         else return <div className={styles.notification__container}>
             <Notification title={'The preliminary decision has been sent to your email.'} description={'In the letter you can get acquainted with the preliminary decision on the credit card.'} />
         </div>;
-    }    
-
-    console.log(stage);
+    }
 
     function scrollToForm() {
         formRef.current?.scrollIntoView({ behavior: 'smooth' });

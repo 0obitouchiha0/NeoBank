@@ -11,7 +11,6 @@ interface OfferItemProps {
 }
 
 function OfferItem({offer, onSelect}: OfferItemProps) {
-    console.log(offer);
     return (
         <div className={styles.offer}>
             <img src={offerImg} alt="present" />

@@ -9,7 +9,6 @@ interface OffersProps {
 }
 
 function Offers({offers}: OffersProps) {
-    console.log(offers);
 
     const dispatch = useAppDispatch();
 

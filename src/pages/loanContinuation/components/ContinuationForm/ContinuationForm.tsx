@@ -56,20 +56,6 @@ const schema = yup.object({
     workExperienceCurrent: yup.number().required(errorMessages.workExperienceCurrent).max(99)
 }).required();
 
-// const defaultValues = {
-//     gender: '',
-//     maritalStatus: '',
-//     dependentAmount: 0,
-//     passportIssueDate: '',
-//     passportIssueBranch: '',
-//     employmentStatus: '',
-//     employerINN: 0,
-//     salary: 0,
-//     position: '',
-//     workExperienceTotal: 0,
-//     workExperienceCurrent: 0,
-// };
-
 interface ContinuationFormProps {
     applicationId: number
 }
@@ -84,7 +70,6 @@ function ContinuationForm({applicationId}: ContinuationFormProps) {
     });
 
     const onSubmit: SubmitHandler<SecondFormValues> = (data) => {
-        console.log(data);
         dispatch(sendSecondForm({application: data, applicationId}));
     };
 

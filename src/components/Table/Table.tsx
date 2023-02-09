@@ -36,7 +36,6 @@ interface TableProps {
 }
 
 export default function Table({table}: TableProps) {
-    console.log(table);
     const [columnSort, setColumnSort] = React.useState<Record<string, number>>({
         number: -1,
         date: -1,
@@ -52,15 +51,12 @@ export default function Table({table}: TableProps) {
     }, [table]);
 
     function changeSortHandler(column: string) {
-        console.log(column);
         setColumnSort(prev => ({...prev, [column]: -prev[column]}));
         setSortedTable(prev => {
             if(column === 'date') return prev.sort((a, b) => (new Date(a[column as keyof payment]).getTime() - new Date(b[column as keyof payment]).getTime()) * columnSort[column]);
             return prev.sort((a, b) => (+a[column as keyof payment] - +b[column as keyof payment]) * -columnSort[column]);
         });
     }
-
-    console.log(sortedTable);
 
     return (
         <table className={styles.table}>

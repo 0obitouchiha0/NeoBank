@@ -14,7 +14,6 @@ interface SelectProps {
 }
 
 const Select = React.forwardRef<HTMLDivElement, SelectProps>(({labelText, options, isRequired, isDefaultValueEmpty, error, ...rest}, ref) => {
-    console.log(error);
     return (
         <div className={styles.container} ref={ref}>
             <Label text={labelText} isRequired={isRequired} htmlFor="select"/>

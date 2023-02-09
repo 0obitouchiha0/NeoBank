@@ -18,7 +18,6 @@ const sendFirstForm = createAsyncThunk(
         const res = await axios.post('http://localhost:8080/application', formattedData)
             .then(res => res.data)
             .then(res => {
-                console.log(res);
                 return res;
             });
         return res;
