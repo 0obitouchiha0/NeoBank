@@ -16,10 +16,20 @@
     }
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 .wrapper {
     width: 1300px;
-    margin: auto;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
     .header {
+        flex-grow: 0;
         #burger, .label {
             display: none;
         }
@@ -164,7 +174,7 @@
             border-radius: 5px;
             width: 100%;
             .label {
-                display: block;
+                display: inline;
                 font-size: 40px;
             }
             .nav {
@@ -198,6 +208,9 @@
                     opacity: 1;
                 }
             }
+        }
+        .content {
+            margin-top: 80px;
         }
        .footer {
             padding: 3.2% 6.3%;

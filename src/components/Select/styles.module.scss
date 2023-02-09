@@ -1,11 +1,6 @@
 .container {
     font-family: 'Ubuntu';
     position: relative;
-    img {
-        position: absolute;
-        right: 22px;
-        top: 42px;
-    }
     &__select {
         appearance: none;
         font-weight: 400;
@@ -20,5 +15,25 @@
         &:focus {
             border: 2px solid #5B35D5;
         }
+        &--error {
+            border: 2px solid #FF5631;
+        }
+    }
+    &__arrow {
+        position: absolute;
+        right: 22px;
+        top: 42px;
+    }
+    &__error {
+        display: block;
+        margin-top: 3px;
+        font-weight: 500;
+        font-size: 16px;
+        color: #FF5631;
+    }
+    &__errorImg {
+        position: absolute;
+        right: 19px;
+        top: 38px;
     }
 }

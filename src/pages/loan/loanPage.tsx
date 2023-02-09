@@ -6,7 +6,9 @@ import Tabs from './components/Tabs/Tabs';
 import GettingCardStep from './components/GettingCardStep/GettingCardStep';
 import CardForm from './components/CardForm/CardForm';
 import FeaturesItem from './components/FeaturesItem/FeaturesItem';
-import Loader from '../../components/Loader/Loader';
+import { useAppSelector } from '../../store/store';
+import Offers from './components/Offers/Offers';
+import Notification from '../../components/Notification/Notification';
 
 const gettingCardStepsData = [
     {
@@ -43,7 +45,18 @@ const featuresData = [
 
 function LoanPage() {
 
-    const formRef = React.useRef<HTMLFormElement>(null); 
+    const formRef = React.useRef<HTMLFormElement>(null);
+    const {offers, stage} = useAppSelector(state => state.application);
+
+    function getComponentDependingOnStage() {
+        if(stage === 0) return <CardForm />;
+        else if(stage === 1) return <Offers offers={offers}/>;
+        else return <div className={styles.notification__container}>
+            <Notification title={'The preliminary decision has been sent to your email.'} description={'In the letter you can get acquainted with the preliminary decision on the credit card.'} />
+        </div>;
+    }    
+
+    console.log(stage);
 
     function scrollToForm() {
         formRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -78,7 +91,7 @@ function LoanPage() {
                         ))}
                     </div>
                 </section>
-                <CardForm ref={formRef}/>
+                {getComponentDependingOnStage()}
             </>
         </Layout>
     );

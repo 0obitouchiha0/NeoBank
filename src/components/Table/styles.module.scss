@@ -1,0 +1,32 @@
+.table {
+    width: 100%;
+    .tbody {
+        .tr {
+            height: 40px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            border-bottom: 1px solid #E2E8F0;
+            .th {
+                cursor: pointer;
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                gap: 7px;
+                span {
+                    font-weight: 500;
+                    font-size: 12px;
+                    letter-spacing: 0.02em;
+                    color: #4A5568;
+                }
+            }
+            .td {
+                display: flex;
+                align-items: center;
+                font-weight: 500;
+                font-size: 12px;
+                letter-spacing: 0.02em;
+                color: #1A202C;
+            }
+        }
+    }
+}

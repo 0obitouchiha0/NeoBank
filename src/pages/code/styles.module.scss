@@ -1,0 +1,81 @@
+.container {
+    margin-top: 127px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Ubuntu';
+    &__title {
+        margin-bottom: 32px;
+        font-weight: 700;
+        font-size: 30px;
+        line-height: 112%;
+        letter-spacing: 0.02em;
+        color: #1C1C1E;
+    }
+    &__inputs {
+        display: flex;
+        gap: 16px;
+        input {
+            position: relative;
+            width: 48px;
+            height: 48px;
+            background-color: transparent;
+            border: 0.5px solid #808080;
+            border-radius: 8px;
+            padding: 18px;
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 112%;
+            letter-spacing: 0.02em;
+            &:focus {
+                border: none;
+                outline: 1px solid #3182CE;
+            }
+            &::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
+                display: none;
+            }
+        }
+        .empty {
+            position: relative;
+            &::before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 2;
+                display: block;
+                width: 20px;
+                height: 20px;
+                border: 1.5px solid #808080;
+                border-radius: 50%;
+            }
+        }   
+    }
+    &__error {
+        margin-top: 16px;
+        font-weight: 500;
+        font-size: 16px;
+        color: #FF5631;
+    }
+}
+
+.congratulations {
+    margin-top: 63px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    align-items: center;
+    &__link {
+        font-family: 'Ubuntu';
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 112%;
+        letter-spacing: 0.02em;
+        font-feature-settings: 'salt' on, 'liga' off;
+        color: #fff;
+        background: #003CFF;
+        border-radius: 16px;
+        padding: 16px;
+    }
+}

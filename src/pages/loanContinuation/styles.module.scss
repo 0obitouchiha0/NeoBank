@@ -1,0 +1,30 @@
+.container {
+    margin-top: 24px;
+    background: #fff;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.08), 0px 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 28px;
+    padding: 32px;
+    font-family: 'Ubuntu';
+    .title {
+        display: flex;
+        align-items: center;
+        gap: 80px;
+        margin-bottom: 43px;
+        &__formName {
+            font-weight: 700;
+            font-size: 30px;
+            line-height: 100%;
+        }
+        &__step {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 100%;
+        }
+    }
+}
+
+.notification__container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
