@@ -1,6 +1,6 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore, getDefaultMiddleware, PreloadedState } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { persistReducer, persistStore } from 'redux-persist';
+import { persistReducer, persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import applicationSlice from './slices/applicationSlice';
 
@@ -15,10 +15,23 @@ const rootReducer = combineReducers({
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
-    reducer: persistedReducer
+    reducer: persistedReducer,
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: {
+                ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+            }
+        })
 });
 const persistor = persistStore(store);
 
+export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
+    return configureStore({
+        reducer: rootReducer,
+        preloadedState,
+    });
+};
+export type AppStore = ReturnType<typeof setupStore>;
 
 export type RootState = ReturnType<typeof rootReducer>
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

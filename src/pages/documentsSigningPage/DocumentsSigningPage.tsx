@@ -1,6 +1,5 @@
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/store';
-import { Navigate, useParams } from 'react-router';
 
 import Layout from '../../components/Layout/Layout';
 import styles from './styles.module.scss';
@@ -8,18 +7,15 @@ import Notification from '../../components/Notification/Notification';
 import docIcon from '../../assets/pagesImages/documentsSigningPage/doc_icon.svg';
 import Checkbox from '../../components/Checkbox/Checkbox';
 import { signApplication } from '../../store/slices/applicationSlice';
+import AllowStageHOC from '../../components/AllowStageHOC/AllowStageHOC';
 
-function DocumentsSigningPage() {
-    const {applicationId: stateApplicationId, stage} = useAppSelector(state => state.application);
-    const {applicationId} = useParams();
-    const numberApplicationId = Number(applicationId);
-    if(numberApplicationId !== stateApplicationId || stage < 4) return <Navigate to={'/loan'}/>;
-
+function DocumentsSigning() {
+    const {applicationId, stage} = useAppSelector(state => state.application);
     const [isChecked, setIsChecked] = React.useState(false);
     const dispatch = useAppDispatch();
 
     function sendHandler() {
-        dispatch(signApplication(numberApplicationId));
+        dispatch(signApplication(Number(applicationId)));
     }
 
     return (
@@ -37,7 +33,7 @@ function DocumentsSigningPage() {
                         history, using an analogue of a handwritten signature, an offer, a policy regarding the processing of personal data, a form of consent to the
                         processing of personal data.
                     </p>
-                    <a className={styles.container__file} href="https://neostudy.neoflex.ru/pluginfile.php/102895/mod_assign/intro/credit-card-offer.pdf" target="_blank" rel="noopener noreferrer">
+                    <a className={styles.container__file} href="https://neostudy.neoflex.ru/pluginfile.php/102895/mod_assign/intro/credit-card-offer.pdf" target="_blank" rel="noopener noreferrer" data-testid="informationFileLink">
                         <img src={docIcon} alt="document" />
                         <span>Information on your card</span>
                     </a>
@@ -53,4 +49,7 @@ function DocumentsSigningPage() {
     );
 }
 
+const DocumentsSigningPage = () => <AllowStageHOC stage={4}><DocumentsSigning/></AllowStageHOC>;
 export default DocumentsSigningPage;
+
+export {DocumentsSigning};

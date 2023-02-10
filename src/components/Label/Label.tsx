@@ -9,7 +9,7 @@ interface LabelProps {
 
 function Label({text, htmlFor, isRequired}: LabelProps) {
     return (
-        <label htmlFor={htmlFor} className={styles.label}>{text} {isRequired && <span>*</span>}</label>
+        <label htmlFor={htmlFor} className={styles.label}>{text} {isRequired && <span data-testid="labelRequiredStar">*</span>}</label>
     );
 }
 

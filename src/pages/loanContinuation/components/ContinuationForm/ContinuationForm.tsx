@@ -36,7 +36,10 @@ const schema = yup.object({
     dependentAmount: yup.number().required(errorMessages.select).test(function(value: number | undefined) {
         return value ? [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].includes(value) : false;
     }),
-    passportIssueDate: yup.date().typeError(errorMessages.passportIssueDate).required(errorMessages.passportIssueDate),
+    passportIssueDate: yup.date().typeError(errorMessages.passportIssueDate).required(errorMessages.passportIssueDate).test(function(value) {
+        if(!value) return false;
+        return value <= new Date() ? true : this.createError({ message: errorMessages.passportIssueDate});
+    }),
     passportIssueBranch: yup.string().required(errorMessages.passportIssueBranch).test(function(num) {
         if(!num) return false;
         return /[0-9]{6}/.test(String(num)) && String(num).length === 6 ? true : this.createError({ message: errorMessages.passportIssueBranch});

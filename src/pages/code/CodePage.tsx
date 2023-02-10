@@ -1,7 +1,6 @@
 import axios from 'axios';
 import clsx from 'clsx';
 import React from 'react';
-import { Navigate, useParams } from 'react-router';
 import Layout from '../../components/Layout/Layout';
 import { confirmCode, deleteApplication } from '../../store/slices/applicationSlice';
 import { useAppDispatch, useAppSelector } from '../../store/store';
@@ -9,15 +8,12 @@ import styles from './styles.module.scss';
 import offerImg from '../../assets/common/offer.png';
 import Notification from '../../components/Notification/Notification';
 import { Link } from 'react-router-dom';
+import AllowStageHOC from '../../components/AllowStageHOC/AllowStageHOC';
 
 let currentIndex = 0;
 
-function CodePage() {
-    const {applicationId: stateApplicationId, stage} = useAppSelector(state => state.application);
-    const {applicationId} = useParams();
-    const numberApplicationId = Number(applicationId);
-    if(numberApplicationId !== stateApplicationId || stage < 5) return <Navigate to={'/loan'}/>;
-
+function Code() {
+    const {applicationId, stage} = useAppSelector(state => state.application);
     const dispatch = useAppDispatch();
 
     const [pin, setPin] = React.useState(['', '', '', '']); 
@@ -101,4 +97,8 @@ function CodePage() {
         </Layout>
     );
 }
+
+const CodePage = () => <AllowStageHOC stage={5}><Code/></AllowStageHOC>;
 export default CodePage;
+
+export {Code};

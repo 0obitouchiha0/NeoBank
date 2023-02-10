@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React from 'react';
-import { Navigate, useParams } from 'react-router';
 import Checkbox from '../../components/Checkbox/Checkbox';
 import Layout from '../../components/Layout/Layout';
 import Table from '../../components/Table/Table';
@@ -9,6 +8,7 @@ import DenyModal from './components/DenyModal/DenyModal';
 import styles from './styles.module.scss';
 import Notification from '../../components/Notification/Notification';
 import { confirmPaymentSchedule } from '../../store/slices/applicationSlice';
+import AllowStageHOC from '../../components/AllowStageHOC/AllowStageHOC';
 
 export type payment = {
     number: number,
@@ -20,10 +20,7 @@ export type payment = {
 }
 
 function Schedule() {
-    const {applicationId: stateApplicationId, stage} = useAppSelector(state => state.application);
-    const {applicationId} = useParams();
-    const numberApplicationId = Number(applicationId);
-    if(numberApplicationId !== stateApplicationId || stage < 3) return <Navigate to={'/loan'}/>;
+    const {applicationId, stage} = useAppSelector(state => state.application);
 
     const [paymentSchedule, setPaymentSchedule] = React.useState<payment[]>([]);
     const [isChecked, setIsChecked] = React.useState(false);
@@ -76,9 +73,14 @@ function Schedule() {
                     : <div className={styles.notification__container}>
                         <Notification title={'Documents are formed'} description={'Documents for signing will be sent to your email'} />
                     </div>}
-                {isModalOpen && <DenyModal onClose={closeModalHandler} applicationId={Number(applicationId)}/>}
+                {isModalOpen && <div data-testid="modal">
+                    <DenyModal onClose={closeModalHandler} applicationId={Number(applicationId)}/>
+                </div>}
             </>
         </Layout>
     );
 }
-export default Schedule;
+const SchedulePage = () => <AllowStageHOC stage={3}><Schedule/></AllowStageHOC>;
+export default SchedulePage;
+
+export {Schedule};

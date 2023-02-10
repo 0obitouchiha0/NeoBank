@@ -29,14 +29,17 @@ function Tabs() {
             <ul className={styles.tabs__links}>
                 {Object.keys(tabPagesNames).map(name => {
                     const typedName = name as TabsEnum;
-                    return <li 
+                    return <li
+                        data-testid={`${name}-nav`}
                         key={name} 
                         className={clsx(styles['tabs__links-item'], activeTabPage === name && styles['tabs__links-item--active'])} 
                         onClick={() => setActiveTabPage(typedName)}
                     >{name}</li>;
                 })}
             </ul>
-            {tabPagesNames[activeTabPage]}
+            <div data-testid={activeTabPage}>
+                {tabPagesNames[activeTabPage]}
+            </div>
         </section>
     );
 }
