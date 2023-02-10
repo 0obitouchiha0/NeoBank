@@ -11,7 +11,7 @@ function SubscriptionField() {
 
     function subscribeHandler() {
         if(!isSubscribed) {
-            axios.post('http://localhost:8080/email', emailFieldValue).then(() => {
+            axios.post('http://localhost:8080/email', {email: emailFieldValue}).then(() => {
                 localStorage.setItem('isSubscribed', 'true');
                 setIsSubscribed(true);
             });

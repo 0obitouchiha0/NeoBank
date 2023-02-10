@@ -1,13 +1,18 @@
 .input {
+    max-width: 550px;
     margin-top: 60px;
     padding: 22px 32px;
     border-radius: 20px;
     background: #FFFFFF;
     box-shadow: 0px 10px 20px rgba(54, 58, 120, 0.1);
-    display: flex;
+    // display: flex;
+    // align-items: center;
+    // flex-wrap: wrap;
+    display: inline-grid;
     align-items: center;
+    grid-template-columns: 30px 250px 160px;
     &__field {
-        width: 250px;
+        flex-grow: 1;
         margin: 0 10px;
         border: none;
         outline: none;
@@ -38,6 +43,19 @@
             font-size: 16px;
             line-height: 18px;
             color: #fff;
+        }
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .input {
+        grid-template-columns: 30px 150px 42px;
+        &-button {
+            padding: 10px 12px 10px 10px;
+            gap: 14px;
+            &__text {
+                display: none;
+            }
         }
     }
 }
