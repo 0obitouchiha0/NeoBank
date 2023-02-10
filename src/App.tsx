@@ -8,6 +8,7 @@ import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import SchedulePage from './pages/schedule/SchedulePage';
 import DocumentsSigningPage from './pages/documentsSigningPage/DocumentsSigningPage';
 import CodePage from './pages/code/CodePage';
+import ErrorPage from './pages/error/ErrorPage';
 
 const router = createBrowserRouter([
     {
@@ -36,7 +37,7 @@ const router = createBrowserRouter([
     },
     {
         path: '*',
-        element: <HomePage/>,
+        element: <ErrorPage/>,
     },
 ]);
 
