@@ -1,0 +1,82 @@
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .modal {
+        width: 450px;
+        background-color: #fff;
+        padding: 16px;
+        font-family: 'Ubuntu';
+        &__header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            h3 {
+                font-weight: 700;
+                font-size: 16px;
+                line-height: 147.4%;
+                letter-spacing: 0.02em;
+                color: #1C1C1E;
+            }
+            img {
+                cursor: pointer;
+            }
+        }
+        .content {
+            display: flex;
+            flex-direction: column;
+            &__text {
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 147.4%;
+                letter-spacing: 0.02em;
+                color: #1A202C;
+                margin-bottom: 35px;
+            }
+            &__btns {
+                display: flex;
+                justify-content: end;
+                gap: 40px;
+                button {
+                    border-radius: 8px;
+                    padding: 11px 28px;
+                    font-weight: 700;
+                    font-size: 16px;
+                    line-height: 112%;
+                    letter-spacing: 0.02em;
+                    font-feature-settings: 'salt' on, 'liga' off;
+                    color: #fff;
+                    border: none;
+                    cursor: pointer;
+                }
+                .denyBtn {
+                    background: rgba(217, 55, 55, 0.8);
+                }
+                .cancelBtn {
+                    background: #003CFF;
+                }
+            }
+            .homeLink {
+                display: inline-block;
+                border-radius: 8px;
+                padding: 11px 28px;
+                font-weight: 700;
+                font-size: 16px;
+                line-height: 112%;
+                letter-spacing: 0.02em;
+                font-feature-settings: 'salt' on, 'liga' off;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+                background: #003CFF;
+                margin-left: auto;
+            }
+        }
+    }
+}

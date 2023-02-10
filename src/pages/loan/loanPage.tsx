@@ -6,7 +6,10 @@ import Tabs from './components/Tabs/Tabs';
 import GettingCardStep from './components/GettingCardStep/GettingCardStep';
 import CardForm from './components/CardForm/CardForm';
 import FeaturesItem from './components/FeaturesItem/FeaturesItem';
-import Loader from '../../components/Loader/Loader';
+import { useAppSelector } from '../../store/store';
+import Offers from './components/Offers/Offers';
+import Notification from '../../components/Notification/Notification';
+import { useNavigate } from 'react-router';
 
 const gettingCardStepsData = [
     {
@@ -43,10 +46,26 @@ const featuresData = [
 
 function LoanPage() {
 
-    const formRef = React.useRef<HTMLFormElement>(null); 
+    const mainBlockRef = React.useRef<HTMLDivElement>(null);
+    const {offers, stage, applicationId} = useAppSelector(state => state.application);
+    const navigate = useNavigate();
 
-    function scrollToForm() {
-        formRef.current?.scrollIntoView({ behavior: 'smooth' });
+    function getComponentDependingOnStage() {
+        if(stage === 0) return <CardForm />;
+        else if(stage === 1) return <Offers offers={offers}/>;
+        else return <div className={styles.notification__container}>
+            <Notification title={'The preliminary decision has been sent to your email.'} description={'In the letter you can get acquainted with the preliminary decision on the credit card.'} />
+        </div>;
+    }
+
+    function handleBannerBtnClick() {
+        if(stage < 2) {
+            mainBlockRef.current?.scrollIntoView({ behavior: 'smooth' });
+        }
+        else if(stage === 2) navigate(`/loan/${applicationId}`);
+        else if(stage === 3) navigate(`/loan/${applicationId}/document`);
+        else if(stage === 4) navigate(`/loan/${applicationId}/document/sign`);
+        else if(stage === 5) navigate(`/loan/${applicationId}/code`);
     }
 
     return (
@@ -62,7 +81,7 @@ function LoanPage() {
                             ))}
                         </ul>
                         <div className={styles['banner__btn']}>
-                            <button onClick={scrollToForm}>Apply for card</button>
+                            <button onClick={handleBannerBtnClick}>{stage < 2 ? 'Apply for card' : 'Continue registration'}</button>
                         </div>
                         <div className={styles.banner__img}>
                             <img src={cardImg} alt="card" />
@@ -78,7 +97,9 @@ function LoanPage() {
                         ))}
                     </div>
                 </section>
-                <CardForm ref={formRef}/>
+                <div ref={mainBlockRef}>
+                    {getComponentDependingOnStage()}
+                </div>
             </>
         </Layout>
     );

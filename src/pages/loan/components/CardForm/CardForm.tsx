@@ -3,59 +3,28 @@ import { useForm, SubmitHandler, SubmitErrorHandler, Controller } from 'react-ho
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
+import styles from './styles.module.scss';
+import ChooseAmount from '../ChooseAmount/ChooseAmount';
 import Select from '../../../../components/Select/Select';
 import TextInput from '../../../../components/TextInput/TextInput';
-import ChooseAmount from '../ChooseAmount/ChooseAmount';
-import styles from './styles.module.scss';
 import DatePicker from '../../../../components/DatePicker/DatePicker';
 import NumberInput from '../../../../components/NumberInput/NumberInput';
-import axios from 'axios';
 import Loader from '../../../../components/Loader/Loader';
+import {amountBorders, termOptions, errorMessages} from './data';
+import { useAppDispatch, useAppSelector } from '../../../../store/store';
+import { sendFirstForm } from '../../../../store/slices/applicationSlice';
 
-const amountBorders = {
-    min: 15000,
-    max: 600000
-};
-
-const termOptions = [
-    {
-        value: 6,
-        text: '6 month'
-    },
-    {
-        value: 12,
-        text: '12 month'
-    },
-    {
-        value: 18,
-        text: '18 month'
-    },
-    {
-        value: 24,
-        text: '24 month'
-    },
-];
-
-interface FormValues {
+export interface FormValues {
     amount: number,
     term: number,
     firstName: string,
     lastName: string,
-    middleName?: string,
+    middleName: string,
     email: string,
     birthdate: Date,
     passportSeries: number,
     passportNumber: number
 }
-
-const errorMessages = {
-    lastName: 'Enter your last name',
-    firstName: 'Enter your first name',
-    email: 'Incorrect email address',
-    birthdate: 'Incorrect date of birth',
-    passportSeries: 'The series must be 4 digits',
-    passportNumber: 'The number must be 6 digits'
-};
 
 const schema = yup.object({
     amount: yup.number().required().min(amountBorders.min).max(amountBorders.max),
@@ -72,11 +41,11 @@ const schema = yup.object({
     }),
     passportSeries: yup.string().required(errorMessages.passportSeries).test(function(num) {
         if(!num) return false;
-        return /[0-9]{4}/.test(String(num)) ? true : this.createError({ message: errorMessages.passportSeries});
+        return /[0-9]{4}/.test(String(num)) && String(num).length === 4 ? true : this.createError({ message: errorMessages.passportSeries});
     }),
     passportNumber: yup.string().required(errorMessages.passportNumber).test(function(num) {
         if(!num) return false;
-        return /[0-9]{6}/.test(String(num)) ? true : this.createError({ message: errorMessages.passportNumber});
+        return /[0-9]{6}/.test(String(num)) && String(num).length === 6 ? true : this.createError({ message: errorMessages.passportNumber});
     }),
 }).required();
 
@@ -88,14 +57,14 @@ const defaultValues = {
     middleName: '',
     email: '',
     birthdate: new Date(),
-    passportSeries: 1,
-    passportNumber: 1
-
+    passportSeries: 0,
+    passportNumber: 0
 };
 
-const CardForm = React.forwardRef<HTMLFormElement>((_, ref) => {
+function CardForm() {
 
-    const [isLoading, setIsLoading] = React.useState(false);
+    const isLoading = useAppSelector(state => state.application.isLoading);
+    const dispatch = useAppDispatch(); 
 
     const { handleSubmit, control, formState: { errors } } = useForm<FormValues>({
         defaultValues,
@@ -103,24 +72,7 @@ const CardForm = React.forwardRef<HTMLFormElement>((_, ref) => {
     });
 
     const onSubmit: SubmitHandler<FormValues> = (data) => {
-        const formattedData = {
-            ...data,
-            firstName: data.firstName.trim(),
-            lastName: data.lastName.trim(),
-            middleName: data.middleName?.trim(),
-            email: data.email.trim(),
-            passportNumber: String(data.passportNumber), 
-            passportSeries: String(data.passportSeries)
-        };
-        setIsLoading(true);
-        axios.post('http://localhost:8080/application', formattedData)
-            .then(res => res.data)
-            .then(res => {
-                console.log(res);
-            })
-            .finally(() => {
-                setIsLoading(false);
-            });
+        dispatch(sendFirstForm(data));
     };
 
     const onError: SubmitErrorHandler<FormValues> = (error) => {
@@ -128,7 +80,7 @@ const CardForm = React.forwardRef<HTMLFormElement>((_, ref) => {
     };
 
     return (
-        <form className={styles.form} onSubmit={handleSubmit(onSubmit, onError)} ref={ref}>
+        <form className={styles.form} onSubmit={handleSubmit(onSubmit, onError)}>
             <Controller
                 name="amount"
                 control={control}
@@ -182,8 +134,6 @@ const CardForm = React.forwardRef<HTMLFormElement>((_, ref) => {
             {isLoading ? <Loader /> : <button type="submit" className={styles.form__submit}>Continue</button>}
         </form>
     );
-});
-
-CardForm.displayName = 'CardForm';
+}
 
 export default CardForm;
