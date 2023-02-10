@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import HomePage from './pages/home/HomePage';
 import LoanPage from './pages/loan/LoanPage';
-import LoanContinuation from './pages/loanContinuation/LoanContinuation';
+import LoanContinuation from './pages/loanContinuation/LoanContinuationPage';
 
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import SchedulePage from './pages/schedule/SchedulePage';

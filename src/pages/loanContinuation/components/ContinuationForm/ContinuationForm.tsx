@@ -34,7 +34,7 @@ const schema = yup.object({
         return value ? ['MARRIED', 'DIVORCED', 'SINGLE', 'WIDOW_WIDOWER'].includes(value) : false;
     }),
     dependentAmount: yup.number().required(errorMessages.select).test(function(value: number | undefined) {
-        return value ? [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].includes(value) : false;
+        return value !== undefined ? [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].includes(value) : false;
     }),
     passportIssueDate: yup.date().typeError(errorMessages.passportIssueDate).required(errorMessages.passportIssueDate).test(function(value) {
         if(!value) return false;

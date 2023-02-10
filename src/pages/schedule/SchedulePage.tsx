@@ -7,8 +7,9 @@ import { useAppDispatch, useAppSelector } from '../../store/store';
 import DenyModal from './components/DenyModal/DenyModal';
 import styles from './styles.module.scss';
 import Notification from '../../components/Notification/Notification';
-import { confirmPaymentSchedule } from '../../store/slices/applicationSlice';
+import { confirmPaymentSchedule, deleteApplication } from '../../store/slices/applicationSlice';
 import AllowStageHOC from '../../components/AllowStageHOC/AllowStageHOC';
+import { useNavigate } from 'react-router';
 
 export type payment = {
     number: number,
@@ -26,12 +27,19 @@ function Schedule() {
     const [isChecked, setIsChecked] = React.useState(false);
     const [isModalOpen, setIsModalOpen] = React.useState(false);
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
     React.useEffect(() => {
         axios.get(`http://localhost:8080/admin/application/${applicationId}`)
             .then(res => res.data)
             .then(res => {
-                setPaymentSchedule(res.credit?.paymentSchedule);
+                if(res.status === 'CC_DENIED') {
+                    dispatch(deleteApplication());
+                    navigate('/loan');
+                }
+                else {
+                    setPaymentSchedule(res.credit?.paymentSchedule);
+                }
             });
     }, []);
 
