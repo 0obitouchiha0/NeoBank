@@ -1,5 +1,3 @@
-import axios from 'axios';
-import clsx from 'clsx';
 import React from 'react';
 import Layout from '../../components/Layout/Layout';
 import styles from './styles.module.scss';
