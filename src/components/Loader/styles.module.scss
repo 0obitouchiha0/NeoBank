@@ -1,0 +1,20 @@
+
+  $spinner-width: 2px;
+  $spinner-color: #B4387A;
+  
+  .loader {
+    border-width: $spinner-width;
+    border-style: solid;
+    border-color: $spinner-color $spinner-color $spinner-color transparent;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    animation: spin 1.5s infinite;
+    position: relative;
+  }
+  
+  @keyframes spin {
+    100% {
+      transform: rotate(360deg);
+    }
+  }

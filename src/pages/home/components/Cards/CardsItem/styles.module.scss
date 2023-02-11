@@ -1,0 +1,20 @@
+.cards__item {
+    grid-area: 'img';
+}
+
+@media screen and (max-width: 1300px) {
+    .cards__item {
+        width: calc(50% - 12px);
+        display: flex;
+        justify-content: end;
+        &:nth-child(even) {
+            justify-content: start;
+        }
+    }
+}
+
+@media screen and (max-width: 920px) {
+    .cards__item img {
+        width: 200px;
+    }
+}

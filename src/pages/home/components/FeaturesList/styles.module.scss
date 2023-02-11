@@ -1,0 +1,13 @@
+.features-list {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+@media screen and (max-width: 1300px) {
+    .features-list {
+        gap: 5px;
+    }
+}

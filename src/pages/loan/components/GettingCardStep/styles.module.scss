@@ -1,0 +1,39 @@
+.step {
+    &:first-child {
+        width: 26%;
+    }
+    &:nth-child(2) {
+        width: 30%;
+    }
+    &:last-child {
+        width: 32%;
+    }
+    &-firstline {
+        display: flex;
+        align-items: center;
+        gap: 36px;
+        &__index {
+            display: inline-block;
+            padding: 9px 18px;
+            background: #D9D9D9;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 147.4%;
+        }
+        &__line {
+            border: none;
+            flex-grow: 1;
+            background-color: rgba(128, 128, 128, 0.2);
+            height: 2px;
+            width: 100%;
+        }
+    }
+    &__text {
+        margin-top: 20px;
+        text-align: center;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 147.4%;
+    }
+}

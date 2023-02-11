@@ -1,0 +1,81 @@
+.container {
+    margin-top: 130px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    font-family: 'Ubuntu';
+    .title {
+        display: flex;
+        align-items: center;
+        gap: 80px;
+        &__name {
+            font-weight: 700;
+            font-size: 30px;
+            line-height: 100%;
+        }
+        &__step {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 100%;
+        }
+    }
+    &__info {
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 112%;
+        color: #4F5665;
+    }
+    &__file {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        span {
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 112%;
+        }
+    }
+    &__send {
+        display: flex;
+        gap: 80px;
+        justify-content: end;
+        align-items: center;
+        button {
+            cursor: pointer;
+            padding: 11px 60px;
+            background: #003CFF;
+            border-radius: 8px;
+            border: none;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 112%;
+            letter-spacing: 0.02em;
+            font-feature-settings: 'salt' on, 'liga' off;
+            color: #FFFFFF;
+            &:disabled {
+                background: #7796C0;
+            }
+        }
+    }
+}
+
+.notification__container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 590px) {
+    .container {
+        margin-top: 50px;
+        .title {
+            align-items: start;
+            flex-direction: column-reverse;
+            gap: 20px;
+        }
+    }
+}
